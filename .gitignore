@@ -2,3 +2,6 @@
 *.a
 *~
 *.so
+.idea
+input-example
+pixel-mover
