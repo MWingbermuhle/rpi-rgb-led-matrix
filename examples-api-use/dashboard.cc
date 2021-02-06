@@ -72,36 +72,36 @@ int32_t horizontal_position_;
 // This allows reload of an image while things are running, e.g. you can
 // live-update the content.
 bool LoadPPM(const char *filename) {
-  FILE *f = fopen(filename, "r");
+  FILE *filehandle = fopen(filename, "r");
   // check if file exists
-  if (f == NULL && access(filename, F_OK) == -1) {
+  if (filehandle == NULL && access(filename, F_OK) == -1) {
     fprintf(stderr, "File \"%s\" doesn't exist\n", filename);
     return false;
   }
-  if (f == NULL) return false;
+  if (filehandle == NULL) return false;
   char header_buf[256];
-  const char *line = ReadLine(f, header_buf, sizeof(header_buf));
-#define EXIT_WITH_MSG(m) { fprintf(stderr, "%s: %s |%s", filename, m, line); \
-    fclose(f); return false; }
+  const char *line = ReadLine(filehandle, header_buf, sizeof(header_buf));
+#define EXIT_WITH_MSG(message) { fprintf(stderr, "%s: %s |%s", filename, message, line); \
+    fclose(filehandle); return false; }
   if (sscanf(line, "P6 ") == EOF)
     EXIT_WITH_MSG("Can only handle P6 as PPM type.");
-  line = ReadLine(f, header_buf, sizeof(header_buf));
+  line = ReadLine(filehandle, header_buf, sizeof(header_buf));
   int new_width, new_height;
   if (!line || sscanf(line, "%d %d ", &new_width, &new_height) != 2)
     EXIT_WITH_MSG("Width/height expected");
   int value;
-  line = ReadLine(f, header_buf, sizeof(header_buf));
+  line = ReadLine(filehandle, header_buf, sizeof(header_buf));
   if (!line || sscanf(line, "%d ", &value) != 1 || value != 255)
     EXIT_WITH_MSG("Only 255 for maxval allowed.");
   const size_t pixel_count = new_width * new_height;
   Pixel *new_image = new Pixel [ pixel_count ];
   assert(sizeof(Pixel) == 3);   // we make that assumption.
-  if (fread(new_image, sizeof(Pixel), pixel_count, f) != pixel_count) {
+  if (fread(new_image, sizeof(Pixel), pixel_count, filehandle) != pixel_count) {
     line = "";
     EXIT_WITH_MSG("Not enough pixels read.");
   }
 #undef EXIT_WITH_MSG
-  fclose(f);
+  fclose(filehandle);
   fprintf(stderr, "Read image '%s' with %dx%d\n", filename,
           new_width, new_height);
   horizontal_position_ = 0;
@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
   RGBMatrix::Options matrix_options;
   rgb_matrix::RuntimeOptions runtime_opt;
   runtime_opt.daemon = 0;
-  runtime_opt.gpio_slowdown = 0;
+  runtime_opt.gpio_slowdown = 4;
   runtime_opt.drop_privileges = 1;
   runtime_opt.do_gpio_init = true;
 
@@ -146,7 +146,7 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  if (!LoadPPM("/home/pi/led-matrix/rpi-rgb-led-matrix/examples-api-use/runtext.ppm")) {
+  if (!LoadPPM("/home/pi/led-matrix/rpi-rgb-led-matrix/dashboard.ppm")) {
     fprintf(stderr, "Couldn't load PPM image\n");
     return 1;
   }
