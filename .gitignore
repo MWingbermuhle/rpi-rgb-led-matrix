@@ -5,3 +5,6 @@
 .idea
 input-example
 pixel-mover
+Pods/
+Podfile.lock
+*.xcworkspace/

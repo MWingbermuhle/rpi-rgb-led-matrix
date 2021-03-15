@@ -1,0 +1,6 @@
+platform :osx, 11.2
+use_frameworks!
+
+target 'DashboardFeed' do
+    pod 'CocoaMQTT/WebSockets', :path => 'CocoaMQTT/'
+end

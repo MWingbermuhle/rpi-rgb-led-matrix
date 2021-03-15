@@ -2,45 +2,46 @@
 //  ContentView.swift
 //  DashboardFeed
 //
-//  Created by Maurice Wingbermühle on 06/02/2021.
+//  Created by Maurice Wingbermühle on 13/03/2021.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-    var dashboard = DashboardCanvas()
+    
+    @State var isConnected = false
     
     var body: some View {
         VStack {
-            Text("Hello, world!")
-                .padding()
-
-            Image(nsImage: startDrawing())
-
-            Button(action: { saveImage() }) {
-                Text("Save Image")
+            HStack {
+                Text("Mqtt connection: ")
+                self.isConnected ? Text("online") : Text("offline")
             }
-
+            Button(action: { fetchJenkinsBranches() }, label: {
+                Text("Fetch Jenkins Branches")
+            })
+            HStack {
+                Text("Branch 1: ")
+                
+            }
+            Button(action: { NSApp.terminate(nil) }, label: {
+                Text("Quit")
+            })
         }
     }
     
-    func startDrawing() -> NSImage {
-        dashboard.drawBranchStatus(status: .success, name: "develop")
-        dashboard.drawBranchStatus(status: .failed, name: "feature/refactor-commlib")
-        dashboard.drawBranchStatus(status: .unstable, name: "bugfix/mjolnir-demoapp")
-        dashboard.drawBranchStatus(status: .success, name: "release/2003.3")
-        
-        return dashboard.toImage()
-    }
-    
-    func saveImage() {
-        dashboard.save()
-    }
+    func fetchJenkinsBranches() { }
 }
 
-
-
-
+extension ContentView : MqttClientListener {
+    func connected() {
+        isConnected = true
+    }
+    
+    func disconnected() {
+        isConnected = false
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

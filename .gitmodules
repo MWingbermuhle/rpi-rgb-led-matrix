@@ -1,0 +1,3 @@
+[submodule "DashboardFeed/CocoaMQTT"]
+	path = DashboardFeed/CocoaMQTT
+	url = https://github.com/emqx/CocoaMQTT.git
