@@ -60,8 +60,10 @@ class JenkinsDataManager : ObservableObject {
                     DispatchQueue.main.async {
                         // update our UI
                         self.jenkinsJobs = decodedResponse.jobs
-                        self.jobNames = self.jenkinsJobs.map({ (job) -> String in
-                            job.name
+                        self.jobNames = self.jenkinsJobs.filter({ (job) -> Bool in
+                            job.color != "notbuilt"
+                        }).map({ (job) -> String in
+                            job.name.replacingOccurrences(of: "%2F", with: "/")
                         })
                         self.jobNames.insert("", at: 0)
                         self.listener?.onDataUpdate(jobs: self.jenkinsJobs)

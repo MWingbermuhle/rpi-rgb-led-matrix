@@ -24,26 +24,26 @@ class DashboardFeeder : JenkinsDataManagerListener {
         print("DashboardFeeder::onDataUpdate called")
         if (!appSettings.selectedJob1.isEmpty) {
             let optionalJob = jobs.first { (job) -> Bool in
-                appSettings.selectedJob1 == job.name
+                appSettings.selectedJob1 == job.name.replacingOccurrences(of: "%2F", with: "/")
             }
             if let job = optionalJob {
-                mqttClient.sendBranchUpdate(index: 0, name: job.name, status: translateColor(job.color))
+                mqttClient.sendBranchUpdate(index: 0, name: job.name.replacingOccurrences(of: "%2F", with: "/"), status: translateColor(job.color))
             }
         }
         if (!appSettings.selectedJob2.isEmpty) {
             let optionalJob = jobs.first { (job) -> Bool in
-                appSettings.selectedJob2 == job.name
+                appSettings.selectedJob2 == job.name.replacingOccurrences(of: "%2F", with: "/")
             }
             if let job = optionalJob {
-                mqttClient.sendBranchUpdate(index: 1, name: job.name, status: translateColor(job.color))
+                mqttClient.sendBranchUpdate(index: 1, name: job.name.replacingOccurrences(of: "%2F", with: "/"), status: translateColor(job.color))
             }
         }
         if (!appSettings.selectedJob3.isEmpty) {
             let optionalJob = jobs.first { (job) -> Bool in
-                appSettings.selectedJob3 == job.name
+                appSettings.selectedJob3 == job.name.replacingOccurrences(of: "%2F", with: "/")
             }
             if let job = optionalJob {
-                mqttClient.sendBranchUpdate(index: 2, name: job.name, status: translateColor(job.color))
+                mqttClient.sendBranchUpdate(index: 2, name: job.name.replacingOccurrences(of: "%2F", with: "/"), status: translateColor(job.color))
             }
         }
     }
@@ -54,12 +54,7 @@ class DashboardFeeder : JenkinsDataManagerListener {
         case "blue":
             return "green"
         case "blue_anime":
-            return "green"
-        // not built
-        case "notbuilt":
-            return "grey"
-        case "notbuilt_anime":
-            return "grey"
+            return "green_anime"
         // disabled
         case "disabled":
             return "grey"
@@ -69,27 +64,27 @@ class DashboardFeeder : JenkinsDataManagerListener {
         case "green":
             return "green"
         case "green_anime":
-            return "green"
+            return "green_anime"
         // red
         case "red":
             return "red"
         case "red_anime":
-            return "red"
+            return "red_anime"
         // yellow
         case "yellow":
-            return "orange"
+            return "yellow"
         case "yellow_anime":
-            return "orange"
+            return "yellow_anime"
         // aborted
         case "aborted":
             return "grey"
         case "aborted_anime":
-            return "grey"
+            return "grey_anime"
         // grey
         case "grey":
             return "grey"
         case "grey_anime":
-            return "grey"
+            return "grey_anime"
         
         default:
             print("Warning: Unrecognized color: \(color)")

@@ -31,15 +31,22 @@ const std::string topic_dashboard_message("DashboardFeed/msg");
 const std::string topic_dashboard_branches("DashboardFeed/branch");
 const Color color_red(255, 0, 0);
 const Color color_green(0, 255, 0);
-const Color color_orange(255, 170, 0);
+const Color color_yellow(255, 170, 0);
+const Color color_grey(50, 50, 50);
 const Color color_black(0, 0, 0);
 const std::string status_color_red("red");
+const std::string status_color_red_animated("red_anime");
 const std::string status_color_green("green");
-const std::string status_color_orange("orange");
+const std::string status_color_green_animated("green_anime");
+const std::string status_color_yellow("yellow");
+const std::string status_color_yellow_animated("yellow_anime");
+const std::string status_color_grey("grey");
+const std::string status_color_grey_animated("grey_animated");
 
 std::string message_line;
 std::deque<std::string> branch_names(3, std::string(""));
 std::deque<Color> branch_colors(3, color_black);
+std::deque<bool> branch_building(3, false);
 
 volatile bool interrupt_received = false;
 static void InterruptHandler(int signo) {
@@ -85,14 +92,33 @@ int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *m
         branch_names[index] = line;
       } else if (topic.find(std::string("status")) != std::string::npos) {
         // Parsing the color from the payload
-        if (line.find(status_color_red) != std::string::npos) {
+        if (line.find(status_color_red_animated) != std::string::npos) {
           branch_colors[index] = color_red;
+          branch_building[index] = true;
+        } else if (line.find(status_color_red) != std::string::npos) {
+          branch_colors[index] = color_red;
+          branch_building[index] = false;
+        } else if (line.find(status_color_green_animated) != std::string::npos) {
+          branch_colors[index] = color_green;
+          branch_building[index] = true;
         } else if (line.find(status_color_green) != std::string::npos) {
           branch_colors[index] = color_green;
-        } else if (line.find(status_color_orange) != std::string::npos) {
-          branch_colors[index] = color_orange;
+          branch_building[index] = false;
+        } else if (line.find(status_color_yellow_animated) != std::string::npos) {
+          branch_colors[index] = color_yellow;
+          branch_building[index] = true;
+        } else if (line.find(status_color_yellow) != std::string::npos) {
+          branch_colors[index] = color_yellow;
+          branch_building[index] = false;
+        } else if (line.find(status_color_grey_animated) != std::string::npos) {
+          branch_colors[index] = color_grey;
+          branch_building[index] = true;
+        } else if (line.find(status_color_grey) != std::string::npos) {
+          branch_colors[index] = color_grey;
+          branch_building[index] = false;
         } else {
           branch_colors[index] = color_black;
+          branch_building[index] = false;
         }
       }
     }
@@ -206,9 +232,11 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < 3; i++) {
       rgb_matrix::DrawCircle(offscreen, 7, 7 + line_offset, 5, branch_colors[i]);
       rgb_matrix::DrawCircle(offscreen, 7, 7 + line_offset, 4, branch_colors[i]);
-      rgb_matrix::DrawCircle(offscreen, 7, 7 + line_offset, 3, branch_colors[i]);
-      rgb_matrix::DrawCircle(offscreen, 7, 7 + line_offset, 2, branch_colors[i]);
-      rgb_matrix::DrawCircle(offscreen, 7, 7 + line_offset, 1, branch_colors[i]);
+      if (!branch_building[i]) {
+        rgb_matrix::DrawCircle(offscreen, 7, 7 + line_offset, 3, branch_colors[i]);
+        rgb_matrix::DrawCircle(offscreen, 7, 7 + line_offset, 2, branch_colors[i]);
+        rgb_matrix::DrawCircle(offscreen, 7, 7 + line_offset, 1, branch_colors[i]);
+      }
       rgb_matrix::DrawText(offscreen, font,
                            branch_offset_x, branch_offset_y + font.baseline() + line_offset,
                            message_color, NULL, branch_names[i].c_str(),
