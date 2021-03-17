@@ -8,11 +8,13 @@
 import Foundation
 import CocoaMQTT
 
-class MqttClient {
+class MqttClient : ObservableObject {
     var cocoaMqtt = CocoaMQTT(clientID: "DashboardFeeder", host: "klaverstraat11.local", port: 1883)
     var listener : MqttClientListener? = nil
+    @Published var isConnected: Bool = false
     
     func connect() {
+        cocoaMqtt.delegate = self
         _ = cocoaMqtt.connect()
     }
     
@@ -64,10 +66,13 @@ extension MqttClient : CocoaMQTTDelegate {
         TRACE("new state: \(state)")
         switch state {
         case .connected:
+            isConnected = true
             listener?.connected()
         case .disconnected:
+            isConnected = false
             listener?.disconnected()
         default:
+            isConnected = false
             TRACE("state \(state) ignored")
         }
     }

@@ -8,3 +8,4 @@ pixel-mover
 Pods/
 Podfile.lock
 *.xcworkspace/
+xcuserdata/

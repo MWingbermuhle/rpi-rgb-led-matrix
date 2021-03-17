@@ -1,0 +1,197 @@
+{
+    "_class" : "org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject",
+    "actions" : [
+      {
+        
+      },
+      {
+        
+      },
+      {
+        
+      },
+      {
+        
+      },
+      {
+        "_class" : "com.cloudbees.plugins.credentials.ViewCredentialsAction"
+      }
+    ],
+    "description" : null,
+    "displayName" : "Mobile Connectivity Platform",
+    "displayNameOrNull" : null,
+    "fullDisplayName" : "Mobile Connectivity Platform",
+    "fullName" : "Mobile Connectivity Platform",
+    "name" : "Mobile Connectivity Platform",
+    "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/",
+    "healthReport" : [
+      {
+        "description" : "Worst health: Mobile Connectivity Platform » add-duration-of-last-operation-charecteristic: Bouw-stabiliteit: Alle recente bouwpogingen faalden.\nAll recent builds failed.",
+        "iconClassName" : "icon-health-00to19",
+        "iconUrl" : "health-00to19.png",
+        "score" : 0
+      }
+    ],
+    "jobs" : [
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "add-duration-of-last-operation-charecteristic",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/add-duration-of-last-operation-charecteristic/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "add-shaver-history-motion-data",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/add-shaver-history-motion-data/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "bugfix%2F36658-mdns-fails-when-app-starts-with-wifi-off",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/bugfix%252F36658-mdns-fails-when-app-starts-with-wifi-off/",
+        "color" : "notbuilt_anime"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "bugfix%2F39430_fix_condor_lan_decryption",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/bugfix%252F39430_fix_condor_lan_decryption/",
+        "color" : "blue"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "bugfix%2Frr-parsing",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/bugfix%252Frr-parsing/",
+        "color" : "aborted"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "develop",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/develop/",
+        "color" : "blue"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "devops%2Ffix-hsdp-client-dependencies",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/devops%252Ffix-hsdp-client-dependencies/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "devops%2Ffix-missing-main-dispatcher-android",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/devops%252Ffix-missing-main-dispatcher-android/",
+        "color" : "disabled"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2F17419-grpc-server-implementation-ios-merge-develop",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252F17419-grpc-server-implementation-ios-merge-develop/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2F32363-myeui64cppid-signing-status-grpc-ios",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252F32363-myeui64cppid-signing-status-grpc-ios/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2F35009-add-error-callbacks-to-bluetooth-adapter",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252F35009-add-error-callbacks-to-bluetooth-adapter/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2F37257-spike-pairing-bonding-behaviour",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252F37257-spike-pairing-bonding-behaviour/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2Fgenerate-combined-release-notes",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252Fgenerate-combined-release-notes/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2Fgetport",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252Fgetport/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2Fgetprop",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252Fgetprop/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2Fsca-updates",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252Fsca-updates/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2Fsoup_updates",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252Fsoup_updates/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "feature%2Fspike-add-properties-to-artifactory-uploads-via-maven",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/feature%252Fspike-add-properties-to-artifactory-uploads-via-maven/",
+        "color" : "red"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "master",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/master/",
+        "color" : "blue"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "platform%2F2003.0",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/platform%252F2003.0/",
+        "color" : "notbuilt"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "platform%2F2003.1",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/platform%252F2003.1/",
+        "color" : "notbuilt"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "platform%2F2003.2",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/platform%252F2003.2/",
+        "color" : "notbuilt"
+      },
+      {
+        "_class" : "org.jenkinsci.plugins.workflow.job.WorkflowJob",
+        "name" : "shaver-history-synchronization-status",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/job/shaver-history-synchronization-status/",
+        "color" : "blue"
+      }
+    ],
+    "primaryView" : {
+      "_class" : "jenkins.branch.MultiBranchProjectViewHolder$ViewImpl",
+      "name" : "default",
+      "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/"
+    },
+    "views" : [
+      {
+        "_class" : "jenkins.branch.MultiBranchProjectViewHolder$ViewImpl",
+        "name" : "default",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/"
+      },
+      {
+        "_class" : "jenkins.branch.MultiBranchProjectViewHolder$ViewImpl",
+        "name" : "tags",
+        "url" : "https://nlybstqvp4vw461.ddns.htc.nl.philips.com/jenkins/job/Mobile%20Connectivity%20Platform/view/tags/"
+      }
+    ],
+    "sources" : [
+      {
+        
+      }
+    ]
+  }

@@ -10,14 +10,16 @@ import SwiftUI
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
 
     var popover: NSPopover!
     var statusBarItem: NSStatusItem!
-    var mqttClient = MqttClient()
+    var contentView: ContentView!
+    private var dashboardFeeder: DashboardFeeder? = nil
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        contentView = ContentView()
 
         // Create the popover
         let popover = NSPopover()
@@ -33,15 +35,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         }
         
-        mqttClient.listener = contentView
-        mqttClient.connect()
+        print("applicationDidFinishLaunching: Start MQTT Client")
+        contentView.mqttClient.listener = self
+        contentView.mqttClient.connect()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
         
-        // TODO: disconnect MqttClient
-        mqttClient.disconnect()
+        contentView.mqttClient.disconnect()
     }
     
     // Create the status item
@@ -54,4 +56,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
               }
          }
     }
+}
+
+extension AppDelegate: MqttClientListener {
+    func connected() {
+        print("AppDelegate::MQTTClientListener::disconnected")
+        self.dashboardFeeder = DashboardFeeder(mqttClient: contentView.mqttClient, jenkinsDataManager: contentView.jenkinsDataManager, appSettings: contentView.appSettings)
+    }
+    
+    func disconnected() {
+        print("AppDelegate::MQTTClientListener::disconnected")
+    }
+    
+    
 }
