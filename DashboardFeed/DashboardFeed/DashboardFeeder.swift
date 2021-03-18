@@ -22,6 +22,10 @@ class DashboardFeeder : JenkinsDataManagerListener {
     
     func onDataUpdate(jobs: [JenkinsJob]) {
         print("DashboardFeeder::onDataUpdate called")
+        if (!mqttClient.isConnected) {
+            print("DashboardFeedeer::onDataUpdate: MQTT Client disconnected - connecting")
+            mqttClient.connect()
+        }
         if (!appSettings.selectedJob1.isEmpty) {
             let optionalJob = jobs.first { (job) -> Bool in
                 appSettings.selectedJob1 == job.name.replacingOccurrences(of: "%2F", with: "/")
